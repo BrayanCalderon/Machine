@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!-- saved from url=(0209)https://yasirkula.net/drive/downloadlinkgenerator/?state=%7B%22ids%22:%5B%221Ksz_yAUBM3wwigrB-42BiIXuBX4c2O6p%22%5D,%22action%22:%22open%22,%22userId%22:%22114596115287000771683%22,%22resourceKeys%22:%7B%7D%7D -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>Download Link Generator for Drive™</title>
+	<link rel="icon" href="https://yasirkula.net/drive/downloadlinkgenerator/favicon.png">
+	<style>
+	table, td
+	{
+		border: 1px solid #888;
+		border-collapse: collapse;
+	}
+	td
+	{
+		padding: 0px 4px 0px 4px;
+		border-left: none;
+		border-right: none;
+	}
+	td > pre
+	{
+		margin: 7px 0px 7px 0px;
+	}
+	</style>
+</head>
+<body style="font-family: Helvetica, sans-serif; margin-bottom: 60px;">
+
+	<div style="max-width:680px; margin:0 auto; padding-top: 10px; line-height: 130%;">
+	
+	<h3 style="text-align:center;">Download Link Generator for Drive™</h3>
+	
+	<p style="text-align:center;"><a href="https://github.com/yasirkula/DownloadLinkGeneratorForGoogleDrive">Source Code</a> | <a href="https://gsuite.google.com/marketplace/app/download_link_generator_for_drive/631283629814">Marketplace</a></p>
+	
+	<p>This Drive™ extension/add-on lets you generate direct download links for the files in your Drive™ storage. Simply right click the file/folder in your Drive™ and select <i>Open with-&gt;Download Link Generator</i>. When a folder is selected, download links for all the files in that folder are generated. If <i>Download Link Generator</i> button isn't present, then you may first need to authorize this extension by clicking the <i>Authorize</i> button below.</p>
+	
+	<p>For the generated download links to work everywhere, you need to make the file/folder public. To do this, you can right click the file/folder, select <i>Get link</i> and change visibility from <i>Restricted</i> to <i>Anyone with the link</i>.</p>
+	
+	<p><b>Privacy:</b> This extension accesses the metadata of the selected file/folder and reads its download link from that metadata. All communications with the Drive™ servers is handled via the official <i>Drive™ Javascript API</i> and your Drive™ data is not stored in any way in our databases. Regarding the "<i>See information about your Google Drive files</i>" permission asked during the authorization:</p>
+	
+	<ul>
+		<li><b>The titles and descriptions of your files:</b> names and the download links of the files that you've opened with this extension will be accessed</li>
+		<li><b>The names and email addresses of people you share files with:</b> this extension doesn't access this info, this is just a generic text explaining the extents of the permission that this extension asks for. It doesn't necessarily mean that the extension accesses that data</li>
+		<li><b>Your folders and how files are organized:</b> when a folder is opened with this extension, names and download links of all files inside that directory will be read by this extension</li>
+	</ul>
+	
+	<p>This extension is hosted at <i>yasirkula.net</i> website and is subject to its <a href="https://yasirkula.net/privacy-policy/">Privacy Policy</a>.</p>
+	
+	<div id="authorize-div" style="display: none;">
+		<b>You need to authorize access to Drive first:</b> <button id="authorize-button" onclick="handleAuthClick()">Authorize</button>
+	</div>
+	
+	<p id="pre-check-error" style="color:red; display:none;"></p>
+	
+	<p id="result-table-toggle" style="display: block;">
+		<input type="checkbox" id="result-table-toggle-input" onchange="onResultsDisplayMethodChanged(this)">
+		<label for="result-table-toggle-input">Display results as table</label><br>
+		
+		<input type="checkbox" id="result-type-toggle-input" onchange="onResultsTypeChanged(this)">
+		<label for="result-type-toggle-input">Display file preview links instead of file download links</label>
+	</p>
+	
+	</div>
+	
+	<pre id="status" style="max-width:680px; margin:0 auto;"><b>Status: <span style="color:green;">finished</span></b></pre><br>
+	
+	<div id="result-holder" style="display:block">
+		<pre id="result" style="display:table; margin:0 auto;">IMG_2240.JPG <a href="https://drive.google.com/uc?id=1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU&amp;export=download">https://drive.google.com/uc?id=1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU&amp;export=download</a>
+IMG_2239.JPG <a href="https://drive.google.com/uc?id=1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL&amp;export=download">https://drive.google.com/uc?id=1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL&amp;export=download</a>
+IMG_2220.JPG <a href="https://drive.google.com/uc?id=1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5&amp;export=download">https://drive.google.com/uc?id=1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5&amp;export=download</a>
+IMG_2222.JPG <a href="https://drive.google.com/uc?id=15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-&amp;export=download">https://drive.google.com/uc?id=15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-&amp;export=download</a>
+IMG_2223.JPG <a href="https://drive.google.com/uc?id=1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI&amp;export=download">https://drive.google.com/uc?id=1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI&amp;export=download</a>
+IMG_2211.JPG <a href="https://drive.google.com/uc?id=1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg&amp;export=download">https://drive.google.com/uc?id=1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg&amp;export=download</a>
+IMG_2226.JPG <a href="https://drive.google.com/uc?id=1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR&amp;export=download">https://drive.google.com/uc?id=1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR&amp;export=download</a>
+IMG_2224.JPG <a href="https://drive.google.com/uc?id=1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf&amp;export=download">https://drive.google.com/uc?id=1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf&amp;export=download</a>
+IMG_2219.JPG <a href="https://drive.google.com/uc?id=1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O&amp;export=download">https://drive.google.com/uc?id=1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O&amp;export=download</a>
+IMG_2237.JPG <a href="https://drive.google.com/uc?id=19P3my0mU4l_HZy4jPb50P0MijRhzCxtX&amp;export=download">https://drive.google.com/uc?id=19P3my0mU4l_HZy4jPb50P0MijRhzCxtX&amp;export=download</a>
+IMG_2236.JPG <a href="https://drive.google.com/uc?id=16PEqyh84I-y5OwxiVgE3VYxms53kSXPM&amp;export=download">https://drive.google.com/uc?id=16PEqyh84I-y5OwxiVgE3VYxms53kSXPM&amp;export=download</a>
+IMG_2229.JPG <a href="https://drive.google.com/uc?id=1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t&amp;export=download">https://drive.google.com/uc?id=1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t&amp;export=download</a>
+IMG_2225.JPG <a href="https://drive.google.com/uc?id=1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy&amp;export=download">https://drive.google.com/uc?id=1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy&amp;export=download</a>
+IMG_2221.JPG <a href="https://drive.google.com/uc?id=1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj&amp;export=download">https://drive.google.com/uc?id=1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj&amp;export=download</a>
+IMG_2216.JPG <a href="https://drive.google.com/uc?id=1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e&amp;export=download">https://drive.google.com/uc?id=1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e&amp;export=download</a>
+IMG_2214.JPG <a href="https://drive.google.com/uc?id=1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W&amp;export=download">https://drive.google.com/uc?id=1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W&amp;export=download</a>
+IMG_2209.JPG <a href="https://drive.google.com/uc?id=1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh&amp;export=download">https://drive.google.com/uc?id=1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh&amp;export=download</a>
+IMG_2235.JPG <a href="https://drive.google.com/uc?id=1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t&amp;export=download">https://drive.google.com/uc?id=1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t&amp;export=download</a>
+IMG_2234.JPG <a href="https://drive.google.com/uc?id=1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh&amp;export=download">https://drive.google.com/uc?id=1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh&amp;export=download</a>
+IMG_2233.JPG <a href="https://drive.google.com/uc?id=1_23f943GsC9l9dGvPtb2hB7xgllYm_aq&amp;export=download">https://drive.google.com/uc?id=1_23f943GsC9l9dGvPtb2hB7xgllYm_aq&amp;export=download</a>
+IMG_2232.JPG <a href="https://drive.google.com/uc?id=1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F&amp;export=download">https://drive.google.com/uc?id=1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F&amp;export=download</a>
+IMG_2231.JPG <a href="https://drive.google.com/uc?id=1C-q5NH46LrzWMD8brabrOi1-livmERiL&amp;export=download">https://drive.google.com/uc?id=1C-q5NH46LrzWMD8brabrOi1-livmERiL&amp;export=download</a>
+IMG_2230.JPG <a href="https://drive.google.com/uc?id=1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_&amp;export=download">https://drive.google.com/uc?id=1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_&amp;export=download</a>
+IMG_2228.JPG <a href="https://drive.google.com/uc?id=149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y&amp;export=download">https://drive.google.com/uc?id=149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y&amp;export=download</a>
+IMG_2227.JPG <a href="https://drive.google.com/uc?id=1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0&amp;export=download">https://drive.google.com/uc?id=1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0&amp;export=download</a>
+IMG_2218.JPG <a href="https://drive.google.com/uc?id=19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I&amp;export=download">https://drive.google.com/uc?id=19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I&amp;export=download</a>
+IMG_2217.JPG <a href="https://drive.google.com/uc?id=1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb&amp;export=download">https://drive.google.com/uc?id=1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb&amp;export=download</a>
+IMG_2215.JPG <a href="https://drive.google.com/uc?id=1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2&amp;export=download">https://drive.google.com/uc?id=1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2&amp;export=download</a>
+IMG_2213.JPG <a href="https://drive.google.com/uc?id=1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ&amp;export=download">https://drive.google.com/uc?id=1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ&amp;export=download</a>
+IMG_2212.JPG <a href="https://drive.google.com/uc?id=1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo&amp;export=download">https://drive.google.com/uc?id=1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo&amp;export=download</a>
+IMG_2210.JPG <a href="https://drive.google.com/uc?id=1purDvmRuoB1_hJO9uE1TXOLp6aXGys81&amp;export=download">https://drive.google.com/uc?id=1purDvmRuoB1_hJO9uE1TXOLp6aXGys81&amp;export=download</a>
+IMG_2208.JPG <a href="https://drive.google.com/uc?id=15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z&amp;export=download">https://drive.google.com/uc?id=15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z&amp;export=download</a>
+IMG_2207.JPG <a href="https://drive.google.com/uc?id=1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT&amp;export=download">https://drive.google.com/uc?id=1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT&amp;export=download</a>
+IMG_2206.JPG <a href="https://drive.google.com/uc?id=1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF&amp;export=download">https://drive.google.com/uc?id=1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF&amp;export=download</a>
+IMG_2205.JPG <a href="https://drive.google.com/uc?id=1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN&amp;export=download">https://drive.google.com/uc?id=1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN&amp;export=download</a>
+IMG_2204.JPG <a href="https://drive.google.com/uc?id=1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD&amp;export=download">https://drive.google.com/uc?id=1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD&amp;export=download</a>
+IMG_2203.JPG <a href="https://drive.google.com/uc?id=1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL&amp;export=download">https://drive.google.com/uc?id=1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL&amp;export=download</a>
+IMG_2202.JPG <a href="https://drive.google.com/uc?id=1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD&amp;export=download">https://drive.google.com/uc?id=1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD&amp;export=download</a>
+IMG_2201.JPG <a href="https://drive.google.com/uc?id=1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf&amp;export=download">https://drive.google.com/uc?id=1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf&amp;export=download</a>
+IMG_2200.JPG <a href="https://drive.google.com/uc?id=1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA&amp;export=download">https://drive.google.com/uc?id=1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA&amp;export=download</a>
+IMG_2198.JPG <a href="https://drive.google.com/uc?id=1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz&amp;export=download">https://drive.google.com/uc?id=1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz&amp;export=download</a>
+IMG_2197.JPG <a href="https://drive.google.com/uc?id=16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX&amp;export=download">https://drive.google.com/uc?id=16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX&amp;export=download</a>
+IMG_2196.JPG <a href="https://drive.google.com/uc?id=1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm&amp;export=download">https://drive.google.com/uc?id=1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm&amp;export=download</a>
+IMG_2195.JPG <a href="https://drive.google.com/uc?id=1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj&amp;export=download">https://drive.google.com/uc?id=1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj&amp;export=download</a>
+IMG_2194.JPG <a href="https://drive.google.com/uc?id=1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l&amp;export=download">https://drive.google.com/uc?id=1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l&amp;export=download</a>
+IMG_2193.JPG <a href="https://drive.google.com/uc?id=1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo&amp;export=download">https://drive.google.com/uc?id=1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo&amp;export=download</a>
+IMG_2192.JPG <a href="https://drive.google.com/uc?id=1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd&amp;export=download">https://drive.google.com/uc?id=1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd&amp;export=download</a>
+IMG_2191.JPG <a href="https://drive.google.com/uc?id=1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF&amp;export=download">https://drive.google.com/uc?id=1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF&amp;export=download</a>
+IMG_2190.JPG <a href="https://drive.google.com/uc?id=161CtQYn_q72bysueaMVOeF_FAMG80wP5&amp;export=download">https://drive.google.com/uc?id=161CtQYn_q72bysueaMVOeF_FAMG80wP5&amp;export=download</a>
+IMG_2189.JPG <a href="https://drive.google.com/uc?id=1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI&amp;export=download">https://drive.google.com/uc?id=1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI&amp;export=download</a>
+IMG_2188.JPG <a href="https://drive.google.com/uc?id=1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow&amp;export=download">https://drive.google.com/uc?id=1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow&amp;export=download</a>
+IMG_2187.JPG <a href="https://drive.google.com/uc?id=1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf&amp;export=download">https://drive.google.com/uc?id=1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf&amp;export=download</a>
+IMG_2186.JPG <a href="https://drive.google.com/uc?id=1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r&amp;export=download">https://drive.google.com/uc?id=1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r&amp;export=download</a>
+IMG_2185.JPG <a href="https://drive.google.com/uc?id=1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp&amp;export=download">https://drive.google.com/uc?id=1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp&amp;export=download</a>
+IMG_2184.JPG <a href="https://drive.google.com/uc?id=1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr&amp;export=download">https://drive.google.com/uc?id=1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr&amp;export=download</a>
+IMG_2183.JPG <a href="https://drive.google.com/uc?id=1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5&amp;export=download">https://drive.google.com/uc?id=1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5&amp;export=download</a>
+IMG_2182.JPG <a href="https://drive.google.com/uc?id=1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy&amp;export=download">https://drive.google.com/uc?id=1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy&amp;export=download</a>
+IMG_2180.JPG <a href="https://drive.google.com/uc?id=1vf0qyAafM4lcl2NNljkoseg7_aERyBNh&amp;export=download">https://drive.google.com/uc?id=1vf0qyAafM4lcl2NNljkoseg7_aERyBNh&amp;export=download</a>
+IMG_2179.JPG <a href="https://drive.google.com/uc?id=1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV&amp;export=download">https://drive.google.com/uc?id=1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV&amp;export=download</a>
+IMG_2178.JPG <a href="https://drive.google.com/uc?id=1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV&amp;export=download">https://drive.google.com/uc?id=1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV&amp;export=download</a>
+IMG_2177.JPG <a href="https://drive.google.com/uc?id=13guOiKerkRo80yNWXwgL-jAXPEMwFh7W&amp;export=download">https://drive.google.com/uc?id=13guOiKerkRo80yNWXwgL-jAXPEMwFh7W&amp;export=download</a>
+IMG_2176.JPG <a href="https://drive.google.com/uc?id=10aYXbAmYUSUQkT5534RLwPxr3StmbFsA&amp;export=download">https://drive.google.com/uc?id=10aYXbAmYUSUQkT5534RLwPxr3StmbFsA&amp;export=download</a>
+IMG_2175.JPG <a href="https://drive.google.com/uc?id=16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX&amp;export=download">https://drive.google.com/uc?id=16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX&amp;export=download</a>
+IMG_2173.JPG <a href="https://drive.google.com/uc?id=1lAwGyuV081J6ImSywOpshsw3TcrCVLl8&amp;export=download">https://drive.google.com/uc?id=1lAwGyuV081J6ImSywOpshsw3TcrCVLl8&amp;export=download</a>
+IMG_2172.JPG <a href="https://drive.google.com/uc?id=1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X&amp;export=download">https://drive.google.com/uc?id=1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X&amp;export=download</a>
+IMG_2170.JPG <a href="https://drive.google.com/uc?id=1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s&amp;export=download">https://drive.google.com/uc?id=1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s&amp;export=download</a>
+IMG_2169.JPG <a href="https://drive.google.com/uc?id=1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4&amp;export=download">https://drive.google.com/uc?id=1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4&amp;export=download</a>
+IMG_2168.JPG <a href="https://drive.google.com/uc?id=1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c&amp;export=download">https://drive.google.com/uc?id=1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c&amp;export=download</a>
+IMG_2167.JPG <a href="https://drive.google.com/uc?id=19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE&amp;export=download">https://drive.google.com/uc?id=19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE&amp;export=download</a>
+IMG_2166.JPG <a href="https://drive.google.com/uc?id=1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8&amp;export=download">https://drive.google.com/uc?id=1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8&amp;export=download</a>
+IMG_2165.JPG <a href="https://drive.google.com/uc?id=1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6&amp;export=download">https://drive.google.com/uc?id=1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6&amp;export=download</a>
+IMG_2164.JPG <a href="https://drive.google.com/uc?id=1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29&amp;export=download">https://drive.google.com/uc?id=1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29&amp;export=download</a>
+IMG_2163.JPG <a href="https://drive.google.com/uc?id=1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN&amp;export=download">https://drive.google.com/uc?id=1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN&amp;export=download</a>
+IMG_2162.JPG <a href="https://drive.google.com/uc?id=13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa&amp;export=download">https://drive.google.com/uc?id=13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa&amp;export=download</a>
+</pre>
+		<table id="result-table" style="display:none; margin:0 auto;"><tbody><tr><td><pre>IMG_2240.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU&amp;export=download">https://drive.google.com/uc?id=1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2239.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL&amp;export=download">https://drive.google.com/uc?id=1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2220.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5&amp;export=download">https://drive.google.com/uc?id=1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2222.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-&amp;export=download">https://drive.google.com/uc?id=15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2223.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI&amp;export=download">https://drive.google.com/uc?id=1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2211.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg&amp;export=download">https://drive.google.com/uc?id=1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2226.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR&amp;export=download">https://drive.google.com/uc?id=1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2224.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf&amp;export=download">https://drive.google.com/uc?id=1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2219.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O&amp;export=download">https://drive.google.com/uc?id=1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2237.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=19P3my0mU4l_HZy4jPb50P0MijRhzCxtX&amp;export=download">https://drive.google.com/uc?id=19P3my0mU4l_HZy4jPb50P0MijRhzCxtX&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2236.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=16PEqyh84I-y5OwxiVgE3VYxms53kSXPM&amp;export=download">https://drive.google.com/uc?id=16PEqyh84I-y5OwxiVgE3VYxms53kSXPM&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2229.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t&amp;export=download">https://drive.google.com/uc?id=1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2225.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy&amp;export=download">https://drive.google.com/uc?id=1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2221.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj&amp;export=download">https://drive.google.com/uc?id=1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2216.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e&amp;export=download">https://drive.google.com/uc?id=1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2214.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W&amp;export=download">https://drive.google.com/uc?id=1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2209.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh&amp;export=download">https://drive.google.com/uc?id=1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2235.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t&amp;export=download">https://drive.google.com/uc?id=1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2234.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh&amp;export=download">https://drive.google.com/uc?id=1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2233.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1_23f943GsC9l9dGvPtb2hB7xgllYm_aq&amp;export=download">https://drive.google.com/uc?id=1_23f943GsC9l9dGvPtb2hB7xgllYm_aq&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2232.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F&amp;export=download">https://drive.google.com/uc?id=1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2231.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1C-q5NH46LrzWMD8brabrOi1-livmERiL&amp;export=download">https://drive.google.com/uc?id=1C-q5NH46LrzWMD8brabrOi1-livmERiL&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2230.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_&amp;export=download">https://drive.google.com/uc?id=1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2228.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y&amp;export=download">https://drive.google.com/uc?id=149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2227.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0&amp;export=download">https://drive.google.com/uc?id=1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2218.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I&amp;export=download">https://drive.google.com/uc?id=19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2217.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb&amp;export=download">https://drive.google.com/uc?id=1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2215.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2&amp;export=download">https://drive.google.com/uc?id=1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2213.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ&amp;export=download">https://drive.google.com/uc?id=1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2212.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo&amp;export=download">https://drive.google.com/uc?id=1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2210.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1purDvmRuoB1_hJO9uE1TXOLp6aXGys81&amp;export=download">https://drive.google.com/uc?id=1purDvmRuoB1_hJO9uE1TXOLp6aXGys81&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2208.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z&amp;export=download">https://drive.google.com/uc?id=15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2207.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT&amp;export=download">https://drive.google.com/uc?id=1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2206.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF&amp;export=download">https://drive.google.com/uc?id=1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2205.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN&amp;export=download">https://drive.google.com/uc?id=1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2204.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD&amp;export=download">https://drive.google.com/uc?id=1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2203.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL&amp;export=download">https://drive.google.com/uc?id=1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2202.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD&amp;export=download">https://drive.google.com/uc?id=1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2201.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf&amp;export=download">https://drive.google.com/uc?id=1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2200.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA&amp;export=download">https://drive.google.com/uc?id=1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2198.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz&amp;export=download">https://drive.google.com/uc?id=1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2197.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX&amp;export=download">https://drive.google.com/uc?id=16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2196.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm&amp;export=download">https://drive.google.com/uc?id=1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2195.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj&amp;export=download">https://drive.google.com/uc?id=1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2194.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l&amp;export=download">https://drive.google.com/uc?id=1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2193.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo&amp;export=download">https://drive.google.com/uc?id=1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2192.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd&amp;export=download">https://drive.google.com/uc?id=1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2191.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF&amp;export=download">https://drive.google.com/uc?id=1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2190.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=161CtQYn_q72bysueaMVOeF_FAMG80wP5&amp;export=download">https://drive.google.com/uc?id=161CtQYn_q72bysueaMVOeF_FAMG80wP5&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2189.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI&amp;export=download">https://drive.google.com/uc?id=1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2188.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow&amp;export=download">https://drive.google.com/uc?id=1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2187.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf&amp;export=download">https://drive.google.com/uc?id=1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2186.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r&amp;export=download">https://drive.google.com/uc?id=1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2185.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp&amp;export=download">https://drive.google.com/uc?id=1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2184.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr&amp;export=download">https://drive.google.com/uc?id=1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2183.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5&amp;export=download">https://drive.google.com/uc?id=1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2182.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy&amp;export=download">https://drive.google.com/uc?id=1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2180.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1vf0qyAafM4lcl2NNljkoseg7_aERyBNh&amp;export=download">https://drive.google.com/uc?id=1vf0qyAafM4lcl2NNljkoseg7_aERyBNh&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2179.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV&amp;export=download">https://drive.google.com/uc?id=1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2178.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV&amp;export=download">https://drive.google.com/uc?id=1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2177.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=13guOiKerkRo80yNWXwgL-jAXPEMwFh7W&amp;export=download">https://drive.google.com/uc?id=13guOiKerkRo80yNWXwgL-jAXPEMwFh7W&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2176.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=10aYXbAmYUSUQkT5534RLwPxr3StmbFsA&amp;export=download">https://drive.google.com/uc?id=10aYXbAmYUSUQkT5534RLwPxr3StmbFsA&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2175.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX&amp;export=download">https://drive.google.com/uc?id=16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2173.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1lAwGyuV081J6ImSywOpshsw3TcrCVLl8&amp;export=download">https://drive.google.com/uc?id=1lAwGyuV081J6ImSywOpshsw3TcrCVLl8&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2172.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X&amp;export=download">https://drive.google.com/uc?id=1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2170.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s&amp;export=download">https://drive.google.com/uc?id=1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2169.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4&amp;export=download">https://drive.google.com/uc?id=1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2168.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c&amp;export=download">https://drive.google.com/uc?id=1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2167.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE&amp;export=download">https://drive.google.com/uc?id=19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2166.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8&amp;export=download">https://drive.google.com/uc?id=1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2165.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6&amp;export=download">https://drive.google.com/uc?id=1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2164.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29&amp;export=download">https://drive.google.com/uc?id=1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2163.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN&amp;export=download">https://drive.google.com/uc?id=1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN&amp;export=download</a></pre></td></tr><tr><td><pre>IMG_2162.JPG</pre></td><td><pre><a href="https://drive.google.com/uc?id=13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa&amp;export=download">https://drive.google.com/uc?id=13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa&amp;export=download</a></pre></td></tr></tbody></table><br>
+	</div>
+	
+	<div id="result-preview-links-holder" style="display:none">
+		<pre id="result-preview-links" style="display:table; margin:0 auto;">IMG_2240.JPG <a href="https://drive.google.com/file/d/1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU/view?usp=drivesdk">https://drive.google.com/file/d/1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU/view?usp=drivesdk</a>
+IMG_2239.JPG <a href="https://drive.google.com/file/d/1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL/view?usp=drivesdk">https://drive.google.com/file/d/1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL/view?usp=drivesdk</a>
+IMG_2220.JPG <a href="https://drive.google.com/file/d/1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5/view?usp=drivesdk">https://drive.google.com/file/d/1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5/view?usp=drivesdk</a>
+IMG_2222.JPG <a href="https://drive.google.com/file/d/15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-/view?usp=drivesdk">https://drive.google.com/file/d/15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-/view?usp=drivesdk</a>
+IMG_2223.JPG <a href="https://drive.google.com/file/d/1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI/view?usp=drivesdk">https://drive.google.com/file/d/1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI/view?usp=drivesdk</a>
+IMG_2211.JPG <a href="https://drive.google.com/file/d/1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg/view?usp=drivesdk">https://drive.google.com/file/d/1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg/view?usp=drivesdk</a>
+IMG_2226.JPG <a href="https://drive.google.com/file/d/1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR/view?usp=drivesdk">https://drive.google.com/file/d/1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR/view?usp=drivesdk</a>
+IMG_2224.JPG <a href="https://drive.google.com/file/d/1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf/view?usp=drivesdk">https://drive.google.com/file/d/1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf/view?usp=drivesdk</a>
+IMG_2219.JPG <a href="https://drive.google.com/file/d/1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O/view?usp=drivesdk">https://drive.google.com/file/d/1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O/view?usp=drivesdk</a>
+IMG_2237.JPG <a href="https://drive.google.com/file/d/19P3my0mU4l_HZy4jPb50P0MijRhzCxtX/view?usp=drivesdk">https://drive.google.com/file/d/19P3my0mU4l_HZy4jPb50P0MijRhzCxtX/view?usp=drivesdk</a>
+IMG_2236.JPG <a href="https://drive.google.com/file/d/16PEqyh84I-y5OwxiVgE3VYxms53kSXPM/view?usp=drivesdk">https://drive.google.com/file/d/16PEqyh84I-y5OwxiVgE3VYxms53kSXPM/view?usp=drivesdk</a>
+IMG_2229.JPG <a href="https://drive.google.com/file/d/1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t/view?usp=drivesdk">https://drive.google.com/file/d/1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t/view?usp=drivesdk</a>
+IMG_2225.JPG <a href="https://drive.google.com/file/d/1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy/view?usp=drivesdk">https://drive.google.com/file/d/1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy/view?usp=drivesdk</a>
+IMG_2221.JPG <a href="https://drive.google.com/file/d/1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj/view?usp=drivesdk">https://drive.google.com/file/d/1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj/view?usp=drivesdk</a>
+IMG_2216.JPG <a href="https://drive.google.com/file/d/1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e/view?usp=drivesdk">https://drive.google.com/file/d/1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e/view?usp=drivesdk</a>
+IMG_2214.JPG <a href="https://drive.google.com/file/d/1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W/view?usp=drivesdk">https://drive.google.com/file/d/1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W/view?usp=drivesdk</a>
+IMG_2209.JPG <a href="https://drive.google.com/file/d/1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh/view?usp=drivesdk">https://drive.google.com/file/d/1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh/view?usp=drivesdk</a>
+IMG_2235.JPG <a href="https://drive.google.com/file/d/1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t/view?usp=drivesdk">https://drive.google.com/file/d/1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t/view?usp=drivesdk</a>
+IMG_2234.JPG <a href="https://drive.google.com/file/d/1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh/view?usp=drivesdk">https://drive.google.com/file/d/1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh/view?usp=drivesdk</a>
+IMG_2233.JPG <a href="https://drive.google.com/file/d/1_23f943GsC9l9dGvPtb2hB7xgllYm_aq/view?usp=drivesdk">https://drive.google.com/file/d/1_23f943GsC9l9dGvPtb2hB7xgllYm_aq/view?usp=drivesdk</a>
+IMG_2232.JPG <a href="https://drive.google.com/file/d/1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F/view?usp=drivesdk">https://drive.google.com/file/d/1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F/view?usp=drivesdk</a>
+IMG_2231.JPG <a href="https://drive.google.com/file/d/1C-q5NH46LrzWMD8brabrOi1-livmERiL/view?usp=drivesdk">https://drive.google.com/file/d/1C-q5NH46LrzWMD8brabrOi1-livmERiL/view?usp=drivesdk</a>
+IMG_2230.JPG <a href="https://drive.google.com/file/d/1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_/view?usp=drivesdk">https://drive.google.com/file/d/1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_/view?usp=drivesdk</a>
+IMG_2228.JPG <a href="https://drive.google.com/file/d/149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y/view?usp=drivesdk">https://drive.google.com/file/d/149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y/view?usp=drivesdk</a>
+IMG_2227.JPG <a href="https://drive.google.com/file/d/1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0/view?usp=drivesdk">https://drive.google.com/file/d/1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0/view?usp=drivesdk</a>
+IMG_2218.JPG <a href="https://drive.google.com/file/d/19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I/view?usp=drivesdk">https://drive.google.com/file/d/19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I/view?usp=drivesdk</a>
+IMG_2217.JPG <a href="https://drive.google.com/file/d/1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb/view?usp=drivesdk">https://drive.google.com/file/d/1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb/view?usp=drivesdk</a>
+IMG_2215.JPG <a href="https://drive.google.com/file/d/1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2/view?usp=drivesdk">https://drive.google.com/file/d/1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2/view?usp=drivesdk</a>
+IMG_2213.JPG <a href="https://drive.google.com/file/d/1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ/view?usp=drivesdk">https://drive.google.com/file/d/1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ/view?usp=drivesdk</a>
+IMG_2212.JPG <a href="https://drive.google.com/file/d/1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo/view?usp=drivesdk">https://drive.google.com/file/d/1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo/view?usp=drivesdk</a>
+IMG_2210.JPG <a href="https://drive.google.com/file/d/1purDvmRuoB1_hJO9uE1TXOLp6aXGys81/view?usp=drivesdk">https://drive.google.com/file/d/1purDvmRuoB1_hJO9uE1TXOLp6aXGys81/view?usp=drivesdk</a>
+IMG_2208.JPG <a href="https://drive.google.com/file/d/15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z/view?usp=drivesdk">https://drive.google.com/file/d/15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z/view?usp=drivesdk</a>
+IMG_2207.JPG <a href="https://drive.google.com/file/d/1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT/view?usp=drivesdk">https://drive.google.com/file/d/1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT/view?usp=drivesdk</a>
+IMG_2206.JPG <a href="https://drive.google.com/file/d/1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF/view?usp=drivesdk">https://drive.google.com/file/d/1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF/view?usp=drivesdk</a>
+IMG_2205.JPG <a href="https://drive.google.com/file/d/1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN/view?usp=drivesdk">https://drive.google.com/file/d/1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN/view?usp=drivesdk</a>
+IMG_2204.JPG <a href="https://drive.google.com/file/d/1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD/view?usp=drivesdk">https://drive.google.com/file/d/1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD/view?usp=drivesdk</a>
+IMG_2203.JPG <a href="https://drive.google.com/file/d/1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL/view?usp=drivesdk">https://drive.google.com/file/d/1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL/view?usp=drivesdk</a>
+IMG_2202.JPG <a href="https://drive.google.com/file/d/1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD/view?usp=drivesdk">https://drive.google.com/file/d/1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD/view?usp=drivesdk</a>
+IMG_2201.JPG <a href="https://drive.google.com/file/d/1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf/view?usp=drivesdk">https://drive.google.com/file/d/1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf/view?usp=drivesdk</a>
+IMG_2200.JPG <a href="https://drive.google.com/file/d/1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA/view?usp=drivesdk">https://drive.google.com/file/d/1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA/view?usp=drivesdk</a>
+IMG_2198.JPG <a href="https://drive.google.com/file/d/1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz/view?usp=drivesdk">https://drive.google.com/file/d/1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz/view?usp=drivesdk</a>
+IMG_2197.JPG <a href="https://drive.google.com/file/d/16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX/view?usp=drivesdk">https://drive.google.com/file/d/16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX/view?usp=drivesdk</a>
+IMG_2196.JPG <a href="https://drive.google.com/file/d/1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm/view?usp=drivesdk">https://drive.google.com/file/d/1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm/view?usp=drivesdk</a>
+IMG_2195.JPG <a href="https://drive.google.com/file/d/1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj/view?usp=drivesdk">https://drive.google.com/file/d/1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj/view?usp=drivesdk</a>
+IMG_2194.JPG <a href="https://drive.google.com/file/d/1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l/view?usp=drivesdk">https://drive.google.com/file/d/1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l/view?usp=drivesdk</a>
+IMG_2193.JPG <a href="https://drive.google.com/file/d/1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo/view?usp=drivesdk">https://drive.google.com/file/d/1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo/view?usp=drivesdk</a>
+IMG_2192.JPG <a href="https://drive.google.com/file/d/1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd/view?usp=drivesdk">https://drive.google.com/file/d/1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd/view?usp=drivesdk</a>
+IMG_2191.JPG <a href="https://drive.google.com/file/d/1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF/view?usp=drivesdk">https://drive.google.com/file/d/1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF/view?usp=drivesdk</a>
+IMG_2190.JPG <a href="https://drive.google.com/file/d/161CtQYn_q72bysueaMVOeF_FAMG80wP5/view?usp=drivesdk">https://drive.google.com/file/d/161CtQYn_q72bysueaMVOeF_FAMG80wP5/view?usp=drivesdk</a>
+IMG_2189.JPG <a href="https://drive.google.com/file/d/1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI/view?usp=drivesdk">https://drive.google.com/file/d/1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI/view?usp=drivesdk</a>
+IMG_2188.JPG <a href="https://drive.google.com/file/d/1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow/view?usp=drivesdk">https://drive.google.com/file/d/1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow/view?usp=drivesdk</a>
+IMG_2187.JPG <a href="https://drive.google.com/file/d/1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf/view?usp=drivesdk">https://drive.google.com/file/d/1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf/view?usp=drivesdk</a>
+IMG_2186.JPG <a href="https://drive.google.com/file/d/1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r/view?usp=drivesdk">https://drive.google.com/file/d/1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r/view?usp=drivesdk</a>
+IMG_2185.JPG <a href="https://drive.google.com/file/d/1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp/view?usp=drivesdk">https://drive.google.com/file/d/1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp/view?usp=drivesdk</a>
+IMG_2184.JPG <a href="https://drive.google.com/file/d/1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr/view?usp=drivesdk">https://drive.google.com/file/d/1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr/view?usp=drivesdk</a>
+IMG_2183.JPG <a href="https://drive.google.com/file/d/1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5/view?usp=drivesdk">https://drive.google.com/file/d/1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5/view?usp=drivesdk</a>
+IMG_2182.JPG <a href="https://drive.google.com/file/d/1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy/view?usp=drivesdk">https://drive.google.com/file/d/1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy/view?usp=drivesdk</a>
+IMG_2180.JPG <a href="https://drive.google.com/file/d/1vf0qyAafM4lcl2NNljkoseg7_aERyBNh/view?usp=drivesdk">https://drive.google.com/file/d/1vf0qyAafM4lcl2NNljkoseg7_aERyBNh/view?usp=drivesdk</a>
+IMG_2179.JPG <a href="https://drive.google.com/file/d/1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV/view?usp=drivesdk">https://drive.google.com/file/d/1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV/view?usp=drivesdk</a>
+IMG_2178.JPG <a href="https://drive.google.com/file/d/1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV/view?usp=drivesdk">https://drive.google.com/file/d/1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV/view?usp=drivesdk</a>
+IMG_2177.JPG <a href="https://drive.google.com/file/d/13guOiKerkRo80yNWXwgL-jAXPEMwFh7W/view?usp=drivesdk">https://drive.google.com/file/d/13guOiKerkRo80yNWXwgL-jAXPEMwFh7W/view?usp=drivesdk</a>
+IMG_2176.JPG <a href="https://drive.google.com/file/d/10aYXbAmYUSUQkT5534RLwPxr3StmbFsA/view?usp=drivesdk">https://drive.google.com/file/d/10aYXbAmYUSUQkT5534RLwPxr3StmbFsA/view?usp=drivesdk</a>
+IMG_2175.JPG <a href="https://drive.google.com/file/d/16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX/view?usp=drivesdk">https://drive.google.com/file/d/16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX/view?usp=drivesdk</a>
+IMG_2173.JPG <a href="https://drive.google.com/file/d/1lAwGyuV081J6ImSywOpshsw3TcrCVLl8/view?usp=drivesdk">https://drive.google.com/file/d/1lAwGyuV081J6ImSywOpshsw3TcrCVLl8/view?usp=drivesdk</a>
+IMG_2172.JPG <a href="https://drive.google.com/file/d/1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X/view?usp=drivesdk">https://drive.google.com/file/d/1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X/view?usp=drivesdk</a>
+IMG_2170.JPG <a href="https://drive.google.com/file/d/1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s/view?usp=drivesdk">https://drive.google.com/file/d/1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s/view?usp=drivesdk</a>
+IMG_2169.JPG <a href="https://drive.google.com/file/d/1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4/view?usp=drivesdk">https://drive.google.com/file/d/1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4/view?usp=drivesdk</a>
+IMG_2168.JPG <a href="https://drive.google.com/file/d/1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c/view?usp=drivesdk">https://drive.google.com/file/d/1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c/view?usp=drivesdk</a>
+IMG_2167.JPG <a href="https://drive.google.com/file/d/19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE/view?usp=drivesdk">https://drive.google.com/file/d/19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE/view?usp=drivesdk</a>
+IMG_2166.JPG <a href="https://drive.google.com/file/d/1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8/view?usp=drivesdk">https://drive.google.com/file/d/1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8/view?usp=drivesdk</a>
+IMG_2165.JPG <a href="https://drive.google.com/file/d/1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6/view?usp=drivesdk">https://drive.google.com/file/d/1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6/view?usp=drivesdk</a>
+IMG_2164.JPG <a href="https://drive.google.com/file/d/1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29/view?usp=drivesdk">https://drive.google.com/file/d/1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29/view?usp=drivesdk</a>
+IMG_2163.JPG <a href="https://drive.google.com/file/d/1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN/view?usp=drivesdk">https://drive.google.com/file/d/1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN/view?usp=drivesdk</a>
+IMG_2162.JPG <a href="https://drive.google.com/file/d/13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa/view?usp=drivesdk">https://drive.google.com/file/d/13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa/view?usp=drivesdk</a>
+</pre>
+		<table id="result-preview-links-table" style="display:none; margin:0 auto;"><tbody><tr><td><pre>IMG_2240.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU/view?usp=drivesdk">https://drive.google.com/file/d/1ATwW15v7FNUY9jQQwFmZF7arB-xShKJU/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2239.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL/view?usp=drivesdk">https://drive.google.com/file/d/1Bd4iG3Wtg5sT04LvhBXBaQtWrM-jMFFL/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2220.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5/view?usp=drivesdk">https://drive.google.com/file/d/1-RAuh-3vHpO6gfmQxUn9Nq8re9QZLmG5/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2222.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-/view?usp=drivesdk">https://drive.google.com/file/d/15x5uzpuSlD_KnZLtXhSgrl2hp3WKmdM-/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2223.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI/view?usp=drivesdk">https://drive.google.com/file/d/1IhYAYxxUwDoK3LeNlUVx-Vi0MzoxVslI/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2211.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg/view?usp=drivesdk">https://drive.google.com/file/d/1Di7xaQrnruOHGZXbwu6sLr-Klf_AU1eg/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2226.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR/view?usp=drivesdk">https://drive.google.com/file/d/1yWd6ZrA0RdNNXMD1_atwp68xxXHde3YR/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2224.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf/view?usp=drivesdk">https://drive.google.com/file/d/1qxkkRnk-pX0GF2slPP_cqi_MJuHc2YPf/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2219.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O/view?usp=drivesdk">https://drive.google.com/file/d/1bkhS_9aR8T9RPMoybSX3wUaoTpwSXr7O/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2237.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/19P3my0mU4l_HZy4jPb50P0MijRhzCxtX/view?usp=drivesdk">https://drive.google.com/file/d/19P3my0mU4l_HZy4jPb50P0MijRhzCxtX/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2236.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/16PEqyh84I-y5OwxiVgE3VYxms53kSXPM/view?usp=drivesdk">https://drive.google.com/file/d/16PEqyh84I-y5OwxiVgE3VYxms53kSXPM/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2229.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t/view?usp=drivesdk">https://drive.google.com/file/d/1ILQ5clNyZ2N2Oo72mopEf3D2L8aExN3t/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2225.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy/view?usp=drivesdk">https://drive.google.com/file/d/1fTklYULCHcR0KFeJRWoU_gQuy-XFXrwy/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2221.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj/view?usp=drivesdk">https://drive.google.com/file/d/1j8PBIon5NucwV9e0o6tXgf8VvjcIN9Gj/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2216.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e/view?usp=drivesdk">https://drive.google.com/file/d/1sWdvoA3yYWVqcDQtPMV6V0cg0VWGeI3e/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2214.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W/view?usp=drivesdk">https://drive.google.com/file/d/1cV4WUGizNON89qEhTmX5vOyY7a1oaX8W/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2209.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh/view?usp=drivesdk">https://drive.google.com/file/d/1DEqsK6-6GRkbJEFWc7xDENVsMm9b_Odh/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2235.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t/view?usp=drivesdk">https://drive.google.com/file/d/1TtEU4YMDHEWYyS5eU74nfBCV7bcVcN4t/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2234.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh/view?usp=drivesdk">https://drive.google.com/file/d/1s_PyykA6S5hPru5LXNqTCiUiUJCmQuxh/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2233.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1_23f943GsC9l9dGvPtb2hB7xgllYm_aq/view?usp=drivesdk">https://drive.google.com/file/d/1_23f943GsC9l9dGvPtb2hB7xgllYm_aq/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2232.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F/view?usp=drivesdk">https://drive.google.com/file/d/1ZtBTX2lHDm7DBtWp654PoCPAY_ucss7F/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2231.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1C-q5NH46LrzWMD8brabrOi1-livmERiL/view?usp=drivesdk">https://drive.google.com/file/d/1C-q5NH46LrzWMD8brabrOi1-livmERiL/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2230.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_/view?usp=drivesdk">https://drive.google.com/file/d/1YLQuPtBcr0eEFcEcTRGf5zsloTSHCSJ_/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2228.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y/view?usp=drivesdk">https://drive.google.com/file/d/149YS_2hYKsV6HbAHB-WUqfNf4cIaid6Y/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2227.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0/view?usp=drivesdk">https://drive.google.com/file/d/1yiTc8OaMlKpvnYXQUmor5ZsickzJ8h_0/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2218.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I/view?usp=drivesdk">https://drive.google.com/file/d/19hVOIzl4DS0PJpcCjc0IZt4oiCGdXw5I/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2217.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb/view?usp=drivesdk">https://drive.google.com/file/d/1WIshpQ_1S6TmrTXS7NL-9D-Wwz9NuIAb/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2215.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2/view?usp=drivesdk">https://drive.google.com/file/d/1Bo0ZzHv-Fp0QFsb1cJOWIrTmobG_eye2/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2213.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ/view?usp=drivesdk">https://drive.google.com/file/d/1UqyFHRFkvb2gwgk2dBABOdiyrSMQyAmJ/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2212.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo/view?usp=drivesdk">https://drive.google.com/file/d/1RhENn7dI0O-ZjXy3rc6rdo9v52MO6Klo/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2210.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1purDvmRuoB1_hJO9uE1TXOLp6aXGys81/view?usp=drivesdk">https://drive.google.com/file/d/1purDvmRuoB1_hJO9uE1TXOLp6aXGys81/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2208.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z/view?usp=drivesdk">https://drive.google.com/file/d/15zgkoi9lzg-hizcQz2YB4bqH2dNUJa9Z/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2207.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT/view?usp=drivesdk">https://drive.google.com/file/d/1XNokDyCuvqOa7OaWP3VR6HPTE-qEGYLT/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2206.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF/view?usp=drivesdk">https://drive.google.com/file/d/1FH-mR-k_H-s5nYnyLZvd7PV1GrJtlPFF/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2205.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN/view?usp=drivesdk">https://drive.google.com/file/d/1FmhY_4jpzUWei7if1yDBkfF6sf2kcLFN/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2204.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD/view?usp=drivesdk">https://drive.google.com/file/d/1cOU6EeAIC2o0RxwQencIzCR0FUmmLgnD/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2203.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL/view?usp=drivesdk">https://drive.google.com/file/d/1CiNDcrYKbnWh-YVa8i41f3WwGNZrAGqL/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2202.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD/view?usp=drivesdk">https://drive.google.com/file/d/1Rvay-Q5st_xGmwH9SqCgiF48X6R5ThcD/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2201.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf/view?usp=drivesdk">https://drive.google.com/file/d/1f8qfZZkpPH7Y0vGGlEA8NKuuLhcCeltf/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2200.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA/view?usp=drivesdk">https://drive.google.com/file/d/1gYRw629kLuQaP_mTzmBtCXEQFSShe0MA/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2198.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz/view?usp=drivesdk">https://drive.google.com/file/d/1DklyflzcitfQZ8PDYxMdSOgMs7b-bgbz/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2197.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX/view?usp=drivesdk">https://drive.google.com/file/d/16KvbgSpAAQhWrx2w0vW4ID5OPuXUNPLX/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2196.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm/view?usp=drivesdk">https://drive.google.com/file/d/1iOlluUmj2dzhtFOCbA40tR9ilg4UJtvm/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2195.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj/view?usp=drivesdk">https://drive.google.com/file/d/1qVVBwMpTkMJ1SaaI1mLAzjnX2Qz_QDYj/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2194.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l/view?usp=drivesdk">https://drive.google.com/file/d/1fYj-tVZYLxgKIClQTzyGDWZaGbziNz5l/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2193.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo/view?usp=drivesdk">https://drive.google.com/file/d/1fsYCgBkWU3TocCTDbWO7IJUJCaRqbMvo/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2192.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd/view?usp=drivesdk">https://drive.google.com/file/d/1wIKemImvqPxwAQIY3sBMpnlC6VZYsOdd/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2191.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF/view?usp=drivesdk">https://drive.google.com/file/d/1haRmA2wFepJtQAEq9FHFqZAr5qlaxQxF/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2190.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/161CtQYn_q72bysueaMVOeF_FAMG80wP5/view?usp=drivesdk">https://drive.google.com/file/d/161CtQYn_q72bysueaMVOeF_FAMG80wP5/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2189.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI/view?usp=drivesdk">https://drive.google.com/file/d/1z4OQZkmDoHbtz7OTNLymFOJBwK8ezyQI/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2188.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow/view?usp=drivesdk">https://drive.google.com/file/d/1e6noHmhfv7gc_Q-ZNEGpCqVWVy5wooow/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2187.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf/view?usp=drivesdk">https://drive.google.com/file/d/1TcWspSC6OPN9WDVU6IYHCAKifW3_WdEf/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2186.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r/view?usp=drivesdk">https://drive.google.com/file/d/1TD7UklIjWppg83u7L8gwVrE6aQpbYa3r/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2185.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp/view?usp=drivesdk">https://drive.google.com/file/d/1ZWbrLngAftijBPmRQdiwMq0MitLhHXZp/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2184.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr/view?usp=drivesdk">https://drive.google.com/file/d/1VGsiZafyZWlzqLcAfyNU-9z5qUdrq8yr/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2183.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5/view?usp=drivesdk">https://drive.google.com/file/d/1D4CkS0fBz8GI2m0a2cToLIFthUO5G6k5/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2182.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy/view?usp=drivesdk">https://drive.google.com/file/d/1Cdb_IlEHHe1DclKOJYec5a3dM9VPtfoy/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2180.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1vf0qyAafM4lcl2NNljkoseg7_aERyBNh/view?usp=drivesdk">https://drive.google.com/file/d/1vf0qyAafM4lcl2NNljkoseg7_aERyBNh/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2179.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV/view?usp=drivesdk">https://drive.google.com/file/d/1B9qKb088rSs32hsmF5g1MAWhjRdVZdHV/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2178.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV/view?usp=drivesdk">https://drive.google.com/file/d/1nkiuL2mEx7pAf_Niu8htiRJtIkZBW5GV/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2177.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/13guOiKerkRo80yNWXwgL-jAXPEMwFh7W/view?usp=drivesdk">https://drive.google.com/file/d/13guOiKerkRo80yNWXwgL-jAXPEMwFh7W/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2176.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/10aYXbAmYUSUQkT5534RLwPxr3StmbFsA/view?usp=drivesdk">https://drive.google.com/file/d/10aYXbAmYUSUQkT5534RLwPxr3StmbFsA/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2175.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX/view?usp=drivesdk">https://drive.google.com/file/d/16w5yMZOJS-HfhNeJOhNRScoI2NpR8-KX/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2173.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1lAwGyuV081J6ImSywOpshsw3TcrCVLl8/view?usp=drivesdk">https://drive.google.com/file/d/1lAwGyuV081J6ImSywOpshsw3TcrCVLl8/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2172.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X/view?usp=drivesdk">https://drive.google.com/file/d/1gZVN2TYNNxenjoVWScACQ9YngB3nMe6X/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2170.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s/view?usp=drivesdk">https://drive.google.com/file/d/1T6ACAo2zhMqdOYy4P3dGvE_XtUm5dM1s/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2169.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4/view?usp=drivesdk">https://drive.google.com/file/d/1YOetQLTU_vpQMn_Q1udKwFVgxsxQwoa4/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2168.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c/view?usp=drivesdk">https://drive.google.com/file/d/1mdal4qrsioaTXtMO5SoyH6ExUbwShE9c/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2167.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE/view?usp=drivesdk">https://drive.google.com/file/d/19hAUSfMwxpaM6EpRicCgYw2tokyp6RsE/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2166.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8/view?usp=drivesdk">https://drive.google.com/file/d/1KNv8TdzAIO_VEZNug4rn21OKNRJtty-8/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2165.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6/view?usp=drivesdk">https://drive.google.com/file/d/1mZ4PAOeic8UR2C8MidGW4C6bFut-xok6/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2164.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29/view?usp=drivesdk">https://drive.google.com/file/d/1S5mGZfmxalpWrueBGgnyxuEE8ok9xH29/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2163.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN/view?usp=drivesdk">https://drive.google.com/file/d/1MyyTlcC2KHvcIqCbmMiJ3PxUnfeuKSKN/view?usp=drivesdk</a></pre></td></tr><tr><td><pre>IMG_2162.JPG</pre></td><td><pre><a href="https://drive.google.com/file/d/13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa/view?usp=drivesdk">https://drive.google.com/file/d/13kshUFTDpqk8vQf9JQ6DNrVB_NBCProa/view?usp=drivesdk</a></pre></td></tr></tbody></table><br>
+	</div>
+	
+	<pre id="error" style="color: red; max-width:680px; margin:0 auto;"></pre>
+	
+	<script src="./Download Link Generator for Drive™_files/cb=gapi(1).loaded_0" async=""></script><script>
+	var CLIENT_ID = '631283629814-n3oaepg8lbjk1431h2g9cmsj838tdt7g.apps.googleusercontent.com';
+	var SCOPES = 'https://www.googleapis.com/auth/drive.install https://www.googleapis.com/auth/drive.metadata.readonly';
+
+	var statusText = document.getElementById( 'status' );
+	var resultHolder = document.getElementById( 'result-holder' );
+	var resultText = document.getElementById( 'result' );
+	var resultTable = document.getElementById( 'result-table' );
+	var resultPreviewLinksHolder = document.getElementById( 'result-preview-links-holder' );
+	var resultPreviewLinksText = document.getElementById( 'result-preview-links' );
+	var resultPreviewLinksTable = document.getElementById( 'result-preview-links-table' );
+	var resultTableToggle = document.getElementById( 'result-table-toggle' );
+	var errorText = document.getElementById( 'error' );
+	var preCheckErrorText = document.getElementById( 'pre-check-error' );
+	var authorizeButton = document.getElementById( 'authorize-div' );
+	
+	var userId = "";
+	var preCheckError = "You need to right click a file/folder in Drive and select 'Open with->Download Link Generator'.";
+	
+	var openedMultipleFilesAtOnce = false;
+	var openedFileIdsStack = [];
+	var waitingFoldersStack = [];
+	
+	function handleClientLoad()
+	{
+		gapi.load( 'client:auth2', checkAuth );
+	}
+	
+	function checkAuth() 
+	{
+		var parameters = getQueryVariable( 'state' );
+		if( parameters && parameters.length > 0 )
+		{
+			var parametersJSON = JSON.parse( parameters );
+			if( parametersJSON )
+			{
+				if( parametersJSON.action == "open" )
+				{
+					if( parametersJSON.ids )
+					{
+						for( var i = 0; i < parametersJSON.ids.length; i++ ) 
+							openedFileIdsStack.push( parametersJSON.ids[i] );
+						
+						openedMultipleFilesAtOnce = ( openedFileIdsStack.length > 1 );
+						preCheckError = "";
+					}
+					else
+						preCheckError = "Download links can't be generated for documents created in Drive. You should first convert the document to a downloadable format (e.g. .doc, .docx, .ppt, .xls).";
+				}
+				else if( parametersJSON.action == "create" && parametersJSON.folderId )
+				{
+					openedFileIdsStack.push( parametersJSON.folderId );
+					preCheckError = "";
+				}
+				else
+					preCheckError = "Invalid state, please try again.";
+				
+				if( parametersJSON.userId )
+					userId = parametersJSON.userId;
+			}
+		}
+		
+		gapi.auth2.authorize( {
+			client_id: CLIENT_ID,
+			scope: SCOPES,
+			prompt: 'none',
+			login_hint: userId
+		}, handleAuthResult );
+	}
+
+	function handleAuthResult( authResult ) 
+	{
+		if( authResult && !authResult.error )
+		{
+			authorizeButton.style.display = 'none';
+			
+			if( preCheckError.length > 0 )
+			{
+				statusText.innerHTML = "";
+				preCheckErrorText.style.display = 'block';
+				preCheckErrorText.innerHTML = "<b>" + preCheckError + "</b>";
+			}
+			else if( openedFileIdsStack.length > 0 )
+			{
+				resultTableToggle.style.display = 'block';
+				loadDriveApi();
+			}
+		}
+		else
+		{
+			authorizeButton.style.display = 'block';
+			preCheckErrorText.style.display = 'none';
+			statusText.innerHTML = "";
+		}
+	}
+
+	function handleAuthClick() 
+	{
+		gapi.auth2.authorize( {
+			client_id: CLIENT_ID,
+			scope: SCOPES,
+			prompt: 'select_account',
+			login_hint: userId
+		}, handleAuthResult );
+		
+		return false;
+	}
+
+	function loadDriveApi() 
+	{
+		gapi.client.load( 'drive', 'v3', function()
+		{
+			statusText.innerHTML = "<b>Status: <span style=\"color:blue;\">generating download link(s), please wait...</span></b>";
+			getDownloadLinkForOpenedFileOrFolder( openedFileIdsStack.shift() );
+		});
+	}
+	
+	function getDownloadLinkForOpenedFileOrFolder( fileId )
+	{
+		var request = gapi.client.drive.files.get({
+			'fileId': fileId,
+			'fields': "mimeType, name, webContentLink, webViewLink",
+			'supportsAllDrives': "true"
+		});
+		
+		request.execute( function( resp )
+		{
+			if( !resp.error )
+			{
+				if( resp.mimeType == 'application/vnd.google-apps.folder' )
+				{
+					// If a single folder is opened, don't start the returned relative paths with this folder's name
+					// Otherwise, start the relative paths with the folder's name to distinguish between all opened files and folders
+					var relativePath = "";
+					if( openedMultipleFilesAtOnce )
+						relativePath = resp.name + "/";
+					
+					getDownloadLinksInFolderRecursively( fileId, relativePath );
+				}
+				else
+				{
+					if( resp.webContentLink )
+						updateResult( resp.name, resp.webContentLink, true );
+					else
+						updateResult( resp.name, "File isn't shared", false );
+					
+					if( resp.webViewLink )
+						updatePreviewLinkResult( resp.name, resp.webViewLink, true );
+					else
+						updatePreviewLinkResult( resp.name, "File isn't shared", false );
+					
+					downloadLinksForOpenedFileOrFolderAreGenerated();
+				}
+			}
+			else
+				handleError( resp.error );
+		});
+	}
+	
+	function downloadLinksForOpenedFileOrFolderAreGenerated()
+	{
+		if( openedFileIdsStack.length > 0 )
+			getDownloadLinkForOpenedFileOrFolder( openedFileIdsStack.shift() );
+		else
+			statusText.innerHTML = "<b>Status: <span style=\"color:green;\">finished</span></b>";
+	}
+	
+	function getDownloadLinksInFolderRecursively( folderId, relativePath )
+	{
+		var getFiles = function(request) 
+		{
+			request.execute(function(resp) 
+			{
+				if( !resp.error )
+				{
+					var files = resp.files;
+					if (files && files.length > 0) 
+					{
+						for (var i = 0; i < files.length; i++) 
+						{
+							var file = files[i];
+							if( file.webContentLink )
+								updateResult( relativePath + file.name, file.webContentLink, true );
+							if( file.webViewLink )
+								updatePreviewLinkResult( relativePath + file.name, file.webViewLink, true );
+						}
+					}
+					
+					var nextPageToken = resp.nextPageToken;
+					if (nextPageToken) 
+					{
+						request = gapi.client.drive.files.list({
+							'q': "trashed=false and '" + folderId + "' in parents and mimeType != 'application/vnd.google-apps.folder'",
+							'pageSize': 1000,
+							'fields': "nextPageToken, files(name, webContentLink, webViewLink)",
+							'includeItemsFromAllDrives': "true",
+							'supportsAllDrives': "true",
+							'pageToken': nextPageToken
+						});
+						
+						getFiles(request);
+					}
+					else
+					{
+						if( waitingFoldersStack.length > 0 )
+						{
+							var folderToEnter = waitingFoldersStack.shift();
+							console.log( "Entering folder: " + folderToEnter._relativePath );
+							getDownloadLinksInFolderRecursively( folderToEnter._id, folderToEnter._relativePath );
+						}
+						else
+							downloadLinksForOpenedFileOrFolderAreGenerated();
+					}
+				}
+				else
+					handleError( resp.error );
+			});
+		}
+		
+		var getFolders = function(request) 
+		{
+			request.execute(function(resp) 
+			{
+				if( !resp.error )
+				{
+					var folders = resp.files;
+					if (folders && folders.length > 0) 
+					{
+						for (var i = 0; i < folders.length; i++) 
+						{
+							var folder = folders[i];
+							if( folder.webViewLink )
+								updatePreviewLinkResult( relativePath + folder.name + "/", folder.webViewLink, true );
+							
+							waitingFoldersStack.push( { _id: folder.id, _relativePath: relativePath + folder.name + "/" } );
+						}
+					}
+					
+					var nextPageToken = resp.nextPageToken;
+					if (nextPageToken) 
+					{
+						request = gapi.client.drive.files.list({
+							'q': "trashed=false and '" + folderId + "' in parents and mimeType = 'application/vnd.google-apps.folder'",
+							'pageSize': 1000,
+							'fields': "nextPageToken, files(id, name, webViewLink)",
+							'includeItemsFromAllDrives': "true",
+							'supportsAllDrives': "true",
+							'pageToken': nextPageToken
+						});
+						
+						getFolders(request);
+					}
+					else
+					{
+						request = gapi.client.drive.files.list({
+							'q': "trashed=false and '" + folderId + "' in parents and mimeType != 'application/vnd.google-apps.folder'",
+							'pageSize': 1000,
+							'fields': "nextPageToken, files(name, webContentLink, webViewLink)",
+							'includeItemsFromAllDrives': "true",
+							'supportsAllDrives': "true"
+						});
+						
+						getFiles(request);
+					}
+				}
+				else
+					handleError( resp.error );
+			});
+		}
+		
+		var request = gapi.client.drive.files.list({
+			'q': "trashed=false and '" + folderId + "' in parents and mimeType = 'application/vnd.google-apps.folder'",
+			'pageSize': 1000,
+			'fields': "nextPageToken, files(id, name, webViewLink)",
+			'includeItemsFromAllDrives': "true",
+			'supportsAllDrives': "true"
+		});
+		
+		getFolders( request );
+	}
+	
+	function handleError( err )
+	{
+		console.log( "ERROR: " + JSON.stringify( err ) );
+		
+		var reason = "";
+		var msg = "";
+		
+		if( err.errors && err.errors.length > 0 )
+		{
+			reason = err.errors[0].reason;
+			msg = err.errors[0].message;
+		}
+		else if( err.data && err.data.length > 0 )
+		{
+			reason = err.data[0].reason;
+			msg = err.data[0].message;
+		}
+		
+		if( err.code == 401 )
+		{
+			handleAuthClick();
+		}
+		else if( err.code == 403 )
+		{
+			if( reason == "rateLimitExceeded" || reason == "userRateLimitExceeded" )
+				errorText.innerHTML = "Too many requests; try again in a minute.";
+			else if( reason == "dailyLimitExceeded" )
+				errorText.innerHTML = "App reached daily limit (just wow O_O ); service will be available tomorrow.";
+			else
+				errorText.innerHTML = err.code + ": " + err.message + "(" + reason + ": " + msg + ")\r\n";
+		}
+		else
+		{
+			errorText.innerHTML = err.code + ": " + err.message + " (" + reason + ": " + msg + ")\r\n";
+		}
+		
+		statusText.innerHTML = "<b>Status: <span style=\"color:red;\">see error log below</span></b>";
+	}
+	
+	function updateResult( relativePath, link, isClickable )
+	{
+		if( isClickable )
+			resultText.innerHTML += relativePath + " <a href=\"" + link + "\">" + link + "</a>\r\n";
+		else
+			resultText.innerHTML += relativePath + " " + link + "\r\n";
+		
+		var newRow = resultTable.insertRow( -1 );
+		newRow.insertCell( 0 ).innerHTML = "<pre>" + relativePath + "</pre>";
+		if( isClickable )
+			newRow.insertCell( 1 ).innerHTML = "<pre><a href=\"" + link + "\">" + link + "</a></pre>";
+		else
+			newRow.insertCell( 1 ).innerHTML = "<pre>" + link + "</pre>";
+	}
+	
+	function updatePreviewLinkResult( relativePath, link, isClickable )
+	{
+		if( isClickable )
+			resultPreviewLinksText.innerHTML += relativePath + " <a href=\"" + link + "\">" + link + "</a>\r\n";
+		else
+			resultPreviewLinksText.innerHTML += relativePath + " " + link + "\r\n";
+		
+		var newRow = resultPreviewLinksTable.insertRow( -1 );
+		newRow.insertCell( 0 ).innerHTML = "<pre>" + relativePath + "</pre>";
+		if( isClickable )
+			newRow.insertCell( 1 ).innerHTML = "<pre><a href=\"" + link + "\">" + link + "</a></pre>";
+		else
+			newRow.insertCell( 1 ).innerHTML = "<pre>" + link + "</pre>";
+	}
+	
+	function onResultsDisplayMethodChanged( checkbox )
+	{
+		if( checkbox.checked )
+		{
+			resultText.style.display = 'none';
+			resultTable.style.display = 'table';
+			
+			resultPreviewLinksText.style.display = 'none';
+			resultPreviewLinksTable.style.display = 'table';
+		}
+		else
+		{
+			resultText.style.display = 'table';
+			resultTable.style.display = 'none';
+			
+			resultPreviewLinksText.style.display = 'table';
+			resultPreviewLinksTable.style.display = 'none';
+		}
+	}
+	
+	function onResultsTypeChanged( checkbox )
+	{
+		if( checkbox.checked )
+		{
+			resultHolder.style.display = 'none';
+			resultPreviewLinksHolder.style.display = 'block';
+		}
+		else
+		{
+			resultHolder.style.display = 'block';
+			resultPreviewLinksHolder.style.display = 'none';
+		}
+	}
+	
+	// Credit: https://css-tricks.com/snippets/javascript/get-url-variables/
+	function getQueryVariable( variable )
+	{
+		var query = window.location.search;
+		if( !query || query.length === 0 )
+			return "";
+		
+		var vars = query.substring( 1 ).split( "&" );
+		for( var i = 0; i < vars.length; i++ )
+		{
+			var pair = vars[i].split( "=" );
+			if( pair[0] == variable )
+				return decodeURIComponent( pair[1].replace( /\+/g, ' ' ) );
+		}
+		
+		return "";
+	}
+	</script>
+	<script async="" defer="" src="./Download Link Generator for Drive™_files/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === &#39;complete&#39;) this.onload()" gapi_processed="true">
+	</script>
+
+<iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" src="./Download Link Generator for Drive™_files/iframe.html" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;"></iframe><iframe id="apiproxyb479585aeac12c259c12afea8e127169de6bb79c0.4012351312" name="apiproxyb479585aeac12c259c12afea8e127169de6bb79c0.4012351312" src="./Download Link Generator for Drive™_files/proxy.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px; display: none;"></iframe></body></html>
